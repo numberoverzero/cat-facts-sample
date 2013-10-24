@@ -9,7 +9,7 @@ hostname = socket.gethostname()
 
 @route('/hello/<name>')
 def index(name='World'):
-    return template('<b>Hello {{name}}</b>! (sent from my from {{hostname}})',
+    return template('<b>Hello {{name}}</b>! (sent from my {{hostname}})',
         name=name, hostname=hostname)
 
 @route('/ping')
