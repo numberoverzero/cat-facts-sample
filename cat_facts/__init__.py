@@ -5,7 +5,7 @@ import bottle
 app = bottle.Bottle()
 config = util.load_file_config(app.config, '.config')
 
-pics = util.list_files('static')
+pics = util.list_files('static/img')
 config['pics'] = sorted(pics)
 
 import views
