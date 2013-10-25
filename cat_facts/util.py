@@ -1,5 +1,4 @@
 import os
-import sys
 import urllib2
 
 _root = None
@@ -21,6 +20,14 @@ def abs_path(filename):
         raise ValueError("Unknown root. Use set_root(__file__) from a script in the root directory first.")
     return os.path.join(_root, filename)
 
+def list_files(dir):
+    '''List files in a directory.
+    Not recursive, excludes folders.'''
+    root = abs_path(dir)
+    contents = os.listdir(root)
+    is_file = lambda filename: os.path.isfile(os.path.join(root, filename))
+    return filter(is_file, contents)
+
 def load_file(filename):
     '''Returns the contents of the given file in the data folder.'''
     path = abs_path(filename)
@@ -39,6 +46,17 @@ def load_file_config(config, filename):
         key, value = key.strip(), value.strip()
         value = type_coerce(value)
         config[key] = value
+    return config
+
+def load_env_config(config, keys, overwrite_null=False):
+    '''
+    Load environment variables into config, where keys is an iterable of env keys to look up.
+    overwrite_null=True means keys not found in env vars are set in config as None. Otherwise, those values aren't set.
+    '''
+    for key in keys:
+        value = os.getenv(key, None)
+        if value is not None or overwrite_null:
+            config[key] = value
     return config
 
 def sanitize(string):
@@ -61,7 +79,8 @@ def type_coerce(value):
     '''
     type_map = {
         'int': int,
-        'float': float
+        'float': float,
+        'bool': bool,
     }
     for type in type_map:
         suffix = '$' + type
