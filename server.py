@@ -6,6 +6,7 @@ import socket
 hostname = socket.gethostname()
 facts = util.load_file('facts').split('\n')
 pics = list(util.load_file_config({}, 'static/sources'))
+layout = util.load_file('layout')
 
 @route('/ping')
 def ping():
@@ -19,13 +20,6 @@ def static(filename):
 def fact():
     fact = random.choice(facts)
     src = '/static/' + random.choice(pics) + '.jpg'
-    layout = """
-    <img src="{{src}}"></img>
-    <h1>Fact</h1>
-    <p>{{fact}}</p>
-    <h3>Brought to you by</h3>
-    <p>{{host}}</p>'
-    """
     return template(layout, src=src, fact=fact, host=hostname)
 
 run(host=config['HOST'], port=config['PORT'], reloader=True)

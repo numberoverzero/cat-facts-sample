@@ -1,0 +1,5 @@
+<img src="{{src}}"></img>
+<h1>Fact</h1>
+<p>{{fact}}</p>
+<h3>Brought to you by</h3>
+<p>{{host}}</p>'
