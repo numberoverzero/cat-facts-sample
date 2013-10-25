@@ -9,6 +9,6 @@
   <h1>Fact</h1>
   <p>{{fact}}</p>
   <h3>Brought to you by</h3>
-  <p>{{host}}</p>
+  <p>{{host}} (this host has been accessed {{hits}} times)</p>
 </body>
 </html>
