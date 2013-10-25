@@ -1,5 +1,8 @@
 #!/bin/sh
 
+echo "Installing python27"
+yum -y install python27
+
 echo "Installing setuptools ez_setup.py"
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
 python27 ez_setup.py
