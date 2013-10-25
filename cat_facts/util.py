@@ -78,7 +78,6 @@ def until(string, suffix):
 
 def load_url(url):
     try:
-        response = urllib2.urlopen(url)
-        html = response.read()
+        return urllib2.urlopen(url).read()
     except urllib2.URLError:
         return ""

@@ -1,0 +1,3 @@
+#!/bin/sh
+MYDIR="$(dirname "$(readlink -f "$0")")"
+python $MYDIR/ping_check.py

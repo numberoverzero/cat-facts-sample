@@ -1,6 +1,6 @@
 import random
 from bottle import route, static_file, run, template
-from multihost_example import config, util
+from cat_facts import config, util
 
 import socket
 fact_page_loads = 0

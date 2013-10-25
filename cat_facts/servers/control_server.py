@@ -1,5 +1,5 @@
 from bottle import route, static_file, run, template
-from multihost_example import config, util
+from cat_facts import config, util
 
 pics = list(util.load_file_config({}, 'static/sources'))
 pic_hits = {pic:0 for pic in pics}
