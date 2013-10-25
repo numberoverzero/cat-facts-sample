@@ -1,0 +1,16 @@
+#!/bin/sh
+
+echo "Installing setuptools ez_setup.py"
+wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+python27 ez_setup.py
+rm ez_setup.py
+
+echo "Installing pip get-pip.py"
+wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+python27 get-pip.py
+rm get-pip.py
+
+echo "Installing paste"
+pip install paste
+
+echo "Success!"
