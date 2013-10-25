@@ -1,5 +1,6 @@
 import os
 import sys
+import urllib2
 
 _root = None
 
@@ -75,3 +76,9 @@ def until(string, suffix):
         return string
     return string.split(suffix, 1)[0]
 
+def load_url(url):
+    try:
+        response = urllib2.urlopen(url)
+        html = response.read()
+    except urllib2.URLError:
+        return ""
