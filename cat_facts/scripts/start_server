@@ -1,0 +1,2 @@
+#!/bin/sh
+python -m cat_facts.scripts.python.start_server

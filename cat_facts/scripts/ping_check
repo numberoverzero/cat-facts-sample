@@ -1,3 +1,2 @@
 #!/bin/sh
-MYDIR="$(dirname "$(readlink -f "$0")")"
-python $MYDIR/ping_check.py
+python -m cat_facts.scripts.python.ping_check
