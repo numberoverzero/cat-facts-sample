@@ -1,20 +1,26 @@
 #!/bin/sh
 
+echo "Installing a real editor"
+yum install -y emacs
+
 echo "Installing python27"
 yum -y install python27
 
-echo "Installing setuptools ez_setup.py"
+echo "Installing pip"
 wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-python27 ez_setup.py
-rm ez_setup.py
-
-echo "Installing pip get-pip.py"
 wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+python27 ez_setup.py
 python27 get-pip.py
+rm ez_setup.py
 rm get-pip.py
 
-echo "Installing paste"
-pip install paste
+echo "Installing greenlet"
+yum install -y gcc
+yum install -y libevent-devel.x86_64
+yum install -y python27-devel.x86_64
+pip install greenlet
 
+echo "Installing gevent"
+pip install gevent
 
 echo "Success!"
