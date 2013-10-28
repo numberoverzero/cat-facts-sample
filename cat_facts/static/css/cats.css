@@ -1,4 +1,41 @@
-body { padding-top: 70px; }
-.cat-img {
-	margin: 0 auto;
+/*****************************************************************************/
+/* Source: http://www.colourlovers.com/palette/580974/Adrift_in_Dreams
+/* CFF09E Background (Light)
+/* A8DBA8 Main Content
+/* 3B8686 Default color
+/* 0B486B Highlight
+/*
+/*****************************************************************************/
+
+html {
+  background-color: #CFF09E;
+  color: #3B8686;
+  font-family: sans-serif;
+}
+
+h1, header strong, footer strong {
+  color: #0B486B;
+}
+
+.content {
+  padding: .5em .8em;
+  background-color: #A8DBA8;
+}
+
+.fact {
+  background-color: #CFF09E;
+  padding: .1em .4em;
+}
+
+.header-nav li {
+  display: inline-block;
+  list-style-type: none;
+  font-size: 32px;
+  background-color: #A8DBA8;
+  padding: .1em .4em;
+}
+
+a, a:hover {
+  text-decoration: none;
+  color: #0B486B;
 }
