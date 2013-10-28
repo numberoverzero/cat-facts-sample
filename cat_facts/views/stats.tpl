@@ -1,8 +1,6 @@
-<dl>
-  <dt>Cat Facts Served</dt>
-  <dd>{{hits}}</dd>
-
-  <dt>Uptime</dt>
-  <dd>{{uptime}}</dd>
-</dl>
+<ul class="stats">
+  %for stat, value in stats.iteritems():
+  <li><strong>{{stat}}</strong> - {{value}}</li>
+  %end
+</ul>
 %rebase layout title=title, host=host

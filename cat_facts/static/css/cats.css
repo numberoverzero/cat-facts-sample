@@ -39,3 +39,9 @@ a, a:hover {
   text-decoration: none;
   color: #0B486B;
 }
+
+.stats {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}

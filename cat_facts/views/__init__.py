@@ -1,3 +1,4 @@
+import collections
 import datetime
 now = datetime.datetime.now
 
@@ -17,29 +18,28 @@ def index():
 
 @app.route('/facts')
 def cat_facts():
-    global hits
-    hits += 1
-    fact = random.choice(facts)
-    pic = random.choice(pics)
+    global hits; hits += 1
     title = 'Cat Facts'
     data = {
         'title': title,
-        'cat_src': pic,
-        'fact': fact,
         'host': hostname,
-        'hits': hits
+        'src': random.choice(pics),
+        'fact': random.choice(facts),
     }
     return template('facts', **data)
 
 @app.route('/stats')
 def stats():
     uptime = str(now() - start_time)
+    stats = collections.OrderedDict([
+        ['Cat Facts Served', hits],
+        ['Uptime', uptime]
+    ])
     title = 'Server Stats'
     data = {
         'title': title,
-        'hits': hits,
         'host': hostname,
-        'uptime': uptime
+        'stats': stats
     }
     return template('stats', **data)
 
