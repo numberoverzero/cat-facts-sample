@@ -2,7 +2,7 @@ import collections
 import random
 import socket
 from bottle import static_file, template, redirect
-from cat_facts import app, util, facts, pics
+from cat_facts import app, util, facts
 from datetime import datetime
 
 from gevent.coros import Semaphore
@@ -37,7 +37,6 @@ def cat_facts():
     data = {
         'title': title,
         'host': hostname,
-        'src': random.choice(pics),
         'fact': random.choice(facts),
     }
     return template('facts', **data)
