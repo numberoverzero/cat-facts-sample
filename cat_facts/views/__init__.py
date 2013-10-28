@@ -1,16 +1,30 @@
 import collections
-import datetime
-now = datetime.datetime.now
-
 import random
+import socket
 from bottle import static_file, template, redirect
 from cat_facts import app, util, facts, pics
+from datetime import datetime
 
-import socket
-hits = 0
+from gevent.coros import Semaphore
+class HitCounter(object):
+    
+    def __init__(self):
+        self.value = 0
+        self.lock = Semaphore(1)
+    
+    def __str__(self):
+        return str(self.value)
+
+    def increment(self):
+        try:
+            self.lock.acquire()
+            self.value += 1
+        finally:
+            self.lock.release()
+
 hostname = socket.gethostname()
-
-start_time = now()
+start_time = datetime.now()
+hits = HitCounter()
 
 @app.route('/')
 def index():
@@ -18,7 +32,7 @@ def index():
 
 @app.route('/facts')
 def cat_facts():
-    global hits; hits += 1
+    hits.increment()
     title = 'Cat Facts'
     data = {
         'title': title,
@@ -30,7 +44,7 @@ def cat_facts():
 
 @app.route('/stats')
 def stats():
-    uptime = str(now() - start_time)
+    uptime = str(datetime.now() - start_time)
     stats = collections.OrderedDict([
         ['Cat Facts Served', hits],
         ['Uptime', uptime]
@@ -49,10 +63,8 @@ def ping():
 
 @app.route('/<filename:re:.*\.(jpg|png|gif|ico)>')
 def images(filename):
-    print "Serving image: " + filename
     return static_file(filename, root=util.abs_path('static/img'))
 
 @app.route('/<filename:re:.*\.css>')
 def stylesheets(filename):
-    print "Serving stylesheet: " + filename
     return static_file(filename, root=util.abs_path('static/css'))
