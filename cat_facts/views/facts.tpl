@@ -1,5 +1,5 @@
-<a>
-<img src="thecatapi.com/api/images/get?format=src&size=med&type=jpg,png&category=boxes">
+<a href="http://thecatapi.com">
+  <img class="resize" src="http://thecatapi.com/api/images/get?format=src&size=med&type=jpg,png&category=boxes">
 </a>
 <h1>Did You Know?</h1>
 <pre class="fact">{{fact}}</pre>
