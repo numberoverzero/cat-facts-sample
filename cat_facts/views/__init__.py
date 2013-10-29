@@ -1,7 +1,7 @@
 import collections
 import random
 import socket
-from bottle import static_file, template, redirect
+from bottle import static_file, template, redirect, error
 from cat_facts import app, util, facts
 from datetime import datetime
 
@@ -67,3 +67,7 @@ def images(filename):
 @app.route('/<filename:re:.*\.css>')
 def stylesheets(filename):
     return static_file(filename, root=util.abs_path('static/css'))
+
+@app.error(404)
+def error404(error):
+    return "404 - Halp"
