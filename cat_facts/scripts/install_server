@@ -1,4 +1,4 @@
-#!/bin/sh -e
+#!/bin/bash
 
 #Install dev packages
 echo "Installing yum requirements." >&2
@@ -13,6 +13,8 @@ if ! hash pip 2>/dev/null; then
     rm ez_setup.py
     rm get-pip.py
     echo "pip install completed." >&2
+else
+    echo "pip already installed." >&2
 fi
 
 echo "Checking for greenlet." >&2

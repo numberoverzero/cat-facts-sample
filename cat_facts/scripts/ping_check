@@ -1,4 +1,5 @@
-#!/bin/sh
+#!/bin/bash
+
 cd $(dirname "$(readlink -f "$0")")
 export PYTHONPATH=$PYTHONPATH:../../
 python27 -m cat_facts.scripts.python.ping_check

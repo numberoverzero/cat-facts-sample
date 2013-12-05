@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 serverprocs=`ps aux | grep start_server | awk '{print $2}'`
 for proc in $serverprocs
