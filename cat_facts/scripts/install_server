@@ -1,26 +1,36 @@
-#!/bin/sh
+#!/bin/sh -e
 
 #Install dev packages
+echo "Installing yum requirements." >&2
 yum -y -q install gcc python27 libevent-devel.x86_64 python27-devel.x86_64
 
 if ! hash pip 2>/dev/null; then
-	#Install pip
-	wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
-	wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
-	python27 ez_setup.py
-	python27 get-pip.py
-	rm ez_setup.py
-	rm get-pip.py
+    echo "Installing pip" >&2
+    wget https://bitbucket.org/pypa/setuptools/raw/bootstrap/ez_setup.py
+    wget https://raw.github.com/pypa/pip/master/contrib/get-pip.py
+    python27 ez_setup.py
+    python27 get-pip.py
+    rm ez_setup.py
+    rm get-pip.py
+    echo "pip install completed." >&2
 fi
 
-#Install greenlet
+echo "Checking for greenlet." >&2
 installed=`pip list | grep greenlet`
 if [ ! "$installed" ]; then
-	pip install greenlet
+    echo "Installing greenlet." >&2
+    pip install greenlet
+    echo "greenlet install completed." >&2
+else
+    echo "greenlet already installed" >&2
 fi
 
-#Install gevent
+echo "Checking for gevent." >&2
 installed=`pip list | grep gevent`
 if [ ! "$installed" ]; then
-	pip install gevent
+    echo "Installing gevent." >&2
+    pip install gevent
+    echo "gevent install completed." >&2
+else
+    echo "gevent already installed." >&2
 fi
